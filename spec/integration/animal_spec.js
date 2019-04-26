@@ -1,6 +1,6 @@
 const request = require("request");
 const server = require("../../server");
-const base = "http://localhost:5000/animals/";
+const base = "http://localhost:5000/api/animals/";
 const sequelize = require("../../src/db/models/index").sequelize;
 const Animal = require("../../src/db/models").Animal;
 
@@ -15,7 +15,8 @@ describe("routes : animals", () => {
         age: "adult",
         gender: "male",
         status: "available",
-        breed: "german shepard mix"
+        breed: "german shepard mix",
+        description: "I am the best dog!"
       })
         .then(animal => {
           this.animal = animal;
@@ -27,7 +28,7 @@ describe("routes : animals", () => {
         });
     });
   });
-  describe("GET /animals", () => {
+  describe("GET /api/animals", () => {
     it("should return a status code 200 and all animals", done => {
       request.get(base, (err, res, body) => {
         expect(res.statusCode).toBe(200);
@@ -38,6 +39,7 @@ describe("routes : animals", () => {
         expect(this.animal.gender).toBe("male");
         expect(this.animal.status).toBe("available");
         expect(this.animal.breed).toBe("german shepard mix");
+        expect(this.animal.description).toBe("I am the best dog!");
         done();
       });
     });
