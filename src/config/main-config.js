@@ -1,6 +1,6 @@
 require("dotenv").config();
 const logger = require("morgan");
-// const path = require("path");
+const path = require("path");
 const bodyParser = require("body-parser");
 // const expressValidator = require("express-validator");
 // const session = require("express-session");
@@ -10,7 +10,6 @@ module.exports = {
   init(app, express) {
     app.use(logger("dev"));
     app.use(bodyParser.urlencoded({ extended: true }));
-    // app.use(bodyParser.json());
 
     // app.use(expressValidator());
     // app.use(
