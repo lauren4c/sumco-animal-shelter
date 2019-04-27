@@ -6,6 +6,7 @@ module.exports = {
     //   const mockAuth = require("../../spec/support/mock-auth.js");
     //   mockAuth.fakeIt(app);
     // }
+
     app.use(animalRoutes);
   }
 };

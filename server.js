@@ -24,19 +24,3 @@ server.on("listening", () => {
     `server is listening for requests on port ${server.address().port}`
   );
 });
-// //Static file declaration
-// app.use(express.static("/shelter-fe/build"));
-//
-// //production mode
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "shelter-fe/build")));
-//   //
-//   app.get("*", (req, res) => {
-//     res.sendfile(path.join(__dirname, "shelter-fe/build/index.html"));
-//   });
-// }
-//
-// //build mode
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname + "shelter-fe/public/index.html"));
-// });
