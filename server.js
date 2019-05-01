@@ -4,13 +4,13 @@ const path = require("path");
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const appConfig = require("./src/config/main-config.js");
 const routeConfig = require("./src/config/route-config.js");
 
 const port = process.env.PORT || "5000";
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 appConfig.init(app, express);
 routeConfig.init(app);

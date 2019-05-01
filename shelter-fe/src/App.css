@@ -1,7 +1,5 @@
 .Main-text {
   background-color: white;
-  padding-left: 4em;
-  padding-right: 4em;
   text-align: left;
 }
 
@@ -45,6 +43,10 @@
   color: #0e7ea7;
 }
 
+main {
+  padding-left: 4em;
+  padding-right: 4em;
+}
 .light-gray {
   color: #e5e3e3;
 }
@@ -96,10 +98,6 @@ li {
   font-size: 0.75em;
 }
 
-.Adopt {
-  padding-left: 4em;
-  padding-right: 4em;
-}
 .Animal-card-holder {
   display: flex;
   flex-flow: row wrap;
