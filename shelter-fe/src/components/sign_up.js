@@ -1,108 +1,136 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, withRouter } from "react-router-dom";
+
 import "../App.css";
 import axios from "axios";
-import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
 
-const SignUp = () => {
-  const alert = useAlert();
+class SignUp extends Component {
+  // const alert = useAlert();
 
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [password_conf, setPassword_conf] = React.useState("");
+  constructor(props) {
+    super(props);
+    this.state = { email: "" };
+    this.state = { password: "" };
+    this.state = { name: "" };
+    this.state = { password_conf: "" };
+    this.state = { role: "" };
 
-  const handleName = event => {
-    setName(event.target.value);
-  };
-  const handleEmail = event => {
-    setEmail(event.target.value);
-  };
-  const handlePassword = event => {
-    setPassword(event.target.value);
-  };
-  const handlePasswordConf = event => {
-    setPassword_conf(event.target.value);
-  };
+    this.handlePassword = this.handlePassword.bind(this);
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleName = this.handleName.bind(this);
+    this.handlePasswordConf = this.handlePasswordConf.bind(this);
+    this.handleRole = this.handleRole.bind(this);
+  }
 
-  const handleSubmit = event => {
+  handleName(event) {
+    this.setState({ name: event.target.value });
+  }
+  handleEmail(event) {
+    this.setState({ email: event.target.value });
+  }
+  handlePassword(event) {
+    this.setState({ password: event.target.value });
+  }
+  handlePasswordConf(event) {
+    this.setState({ password_conf: event.target.value });
+  }
+
+  handleRole(res) {
+    console.log("This is the role value in handleRole " + res.data.user.role);
+    this.setState({ role: res.data.user.role });
+    console.log("This is the state of role: " + this.state.role);
+  }
+
+  handleSubmit(event) {
     event.preventDefault();
     const newUser = {
-      name: name,
-      email: email,
-      password: password,
-      password_conf: password_conf
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password_conf: this.state.password_conf
     };
 
     axios.post("/api/users", newUser).then(res => {
-      alert.show(JSON.stringify(res.data.message));
-      this.props.history.push("/");
+      console.log("This is the response" + JSON.stringify(res));
+      if (JSON.stringify(res.data.message).includes("successfully") === true) {
+        this.handleRole(res);
+      }
     });
-  };
+  }
+  render() {
+    return (
+      <Router>
+        <div className="Sign-Up">
+          <h1>Sign up for an Sumco Animal Shelter account</h1>
+          <p>
+            Already have an account? <a href="/user/sign_in">Sign in here.</a>
+          </p>
+          <div className="Sign-up-form">
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <label>Name:</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter Name"
+                  value={this.state.value}
+                  onChange={this.handleName}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter Email"
+                  value={this.state.value}
+                  onChange={this.handleEmail}
+                  className="form-control"
+                />
+                <br />
+                <small className="text-muted" id="emailHelp">
+                  email address must be a valid address
+                </small>
+              </div>
+              <div className="form-group">
+                <label>Password:</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter Password"
+                  className="form-control"
+                  value={this.state.value}
+                  onChange={this.handlePassword}
+                />
+                <br />
+                <small className="text-muted" id="passwordHelp">
+                  password must be at least 6 characters and match confirmation
+                  below
+                </small>
+              </div>
 
-  return (
-    <Router>
-      <div className="Sign-Up">
-        <h1>Sign up for an Sumco Animal Shelter account</h1>
-        <p>
-          Already have an account? <a href="/sign_in">Sign in here.</a>
-        </p>
-        <div className="Sign-up-form">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Name:</label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter Name"
-                onChange={handleName}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label>Email:</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter Email"
-                onChange={handleEmail}
-                className="form-control"
-              />
-              <small className="text-muted" id="emailHelp">
-                email address must be a valid address
-              </small>
-            </div>
-            <div className="form-group">
-              <label>Password:</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter Password"
-                className="form-control"
-                onChange={handlePassword}
-              />
-            </div>
-            <div className="form-group">
-              <label>Password:</label>
-              <input
-                type="password"
-                name="password_conf"
-                placeholder="Enter Password confirmation"
-                className="form-control"
-                onChange={handlePasswordConf}
-              />
-              <small className="text-muted" id="passwordHelp">
-                password must be at least 6 characters and match confirmation
-                below
-              </small>
-            </div>
-            <br />
-            <input type="submit" value="Sign Up" className="User-button" />
-          </form>
+              <div className="form-group">
+                <label>Password confirmation:</label>
+                <input
+                  type="password"
+                  name="password_conf"
+                  placeholder="Enter Password confirmation"
+                  className="form-control"
+                  value={this.state.value}
+                  onChange={this.handlePasswordConf}
+                />
+              </div>
+              <br />
+              <input type="submit" value="Sign Up" className="User-button" />
+            </form>
+          </div>
         </div>
-      </div>
-    </Router>
-  );
-};
+      </Router>
+    );
+  }
+}
 
 export default withRouter(SignUp);
