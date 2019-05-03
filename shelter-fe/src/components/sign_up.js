@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, withRouter } from "react-router-dom";
-import { AuthContext, Provider } from "../Auth";
+import { AuthContext } from "../Auth";
 
 import "../App.css";
 import axios from "axios";
-// import { useAlert } from "react-alert";
 
 class SignUp extends Component {
   static contextType = AuthContext;
-
-  // const alert = useAlert();
 
   constructor(props) {
     super(props);
@@ -39,7 +36,6 @@ class SignUp extends Component {
   }
 
   handleClientLogIn(res) {
-    console.log("This is the role value in handleRole " + res.data.user.role);
     this.context.logIn(res.data.user.role, res.data.user.name);
     this.props.history.push("/");
   }
@@ -54,7 +50,7 @@ class SignUp extends Component {
     };
 
     axios.post("/api/users", newUser).then(res => {
-      console.log("This is the response" + JSON.stringify(res));
+      alert(JSON.stringify(res.data.message));
       if (JSON.stringify(res.data.message).includes("successfully") === true) {
         this.handleClientLogIn(res);
       }

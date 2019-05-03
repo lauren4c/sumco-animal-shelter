@@ -8,9 +8,6 @@ export default class AuthProvider extends Component {
       name: null,
       role: null
     };
-    console.log(
-      "This is the state in the App " + this.state.name + " " + this.state.role
-    );
   }
 
   logIn = (role, name) => {
@@ -18,12 +15,6 @@ export default class AuthProvider extends Component {
       role: role,
       name: name
     });
-    console.log(
-      "This is the NEW state in the App " +
-        this.state.name +
-        " " +
-        this.state.role
-    );
   };
 
   logOut = () => {
@@ -31,12 +22,7 @@ export default class AuthProvider extends Component {
       role: null,
       name: null
     });
-    console.log(
-      "This is the logged-out state in the App " +
-        this.state.name +
-        " " +
-        this.state.role
-    );
+    alert("You are now signed-out");
   };
 
   render() {

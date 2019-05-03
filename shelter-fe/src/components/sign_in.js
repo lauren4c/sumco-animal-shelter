@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import "../App.css";
 import axios from "axios";
-import { AuthContext, Provider } from "../Auth";
-// import { useAlert } from "react-alert";
-// import App from "../App.js";
+import { AuthContext } from "../Auth";
+import { Alert } from "reactstrap";
 
 class SignIn extends Component {
   static contextType = AuthContext;
@@ -19,10 +18,7 @@ class SignIn extends Component {
     this.handleSignIn = this.handleSignIn.bind(this);
   }
 
-  // alert = useAlert();
-
   handleClientLogIn(res) {
-    console.log("This is the role value in handleRole " + res.data.user.role);
     this.context.logIn(res.data.user.role, res.data.user.name);
     this.props.history.push("/");
   }
@@ -41,7 +37,7 @@ class SignIn extends Component {
       password: this.state.password
     };
     axios.post("/api/users/sign_in", user).then(res => {
-      // alert.show(JSON.stringify(res.data.message));
+      alert(JSON.stringify(res.data.message));
       if (JSON.stringify(res.data.message).includes("successfully") === true) {
         this.handleClientLogIn(res);
       }

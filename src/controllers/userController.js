@@ -19,7 +19,6 @@ module.exports = {
       } else {
         userQueries.createUser(newUser, (err, user) => {
           if (err) {
-            console.log("Error in the controller" + err);
             res.json({ message: err });
           } else {
             passport.authenticate("local")(req, res, () => {
