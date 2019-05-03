@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "../App.css";
 import axios from "axios";
 import { AuthContext } from "../Auth";
-import { Alert } from "reactstrap";
 
 class SignIn extends Component {
   static contextType = AuthContext;
