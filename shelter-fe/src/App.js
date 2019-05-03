@@ -7,8 +7,11 @@ import Landing from "./components/landing";
 import Adopt from "./components/adopt";
 import SignUp from "./components/sign_up";
 import SignIn from "./components/sign_in";
+import { AuthContext } from "./Auth";
 
 class App extends Component {
+  static contextType = AuthContext;
+
   render() {
     return (
       <Router>

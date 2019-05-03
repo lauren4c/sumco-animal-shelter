@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import "../App.css";
 import axios from "axios";
-import { Consumer, Provider } from "../Auth";
+import { AuthContext, Provider } from "../Auth";
 // import { useAlert } from "react-alert";
 // import App from "../App.js";
 
 class SignIn extends Component {
+  static contextType = AuthContext;
+
   constructor(props) {
     super(props);
     this.state = { email: "" };
     this.state = { password: "" };
-    this.state = { role: "" };
 
     this.handlePassword = this.handlePassword.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
@@ -20,20 +21,17 @@ class SignIn extends Component {
 
   // alert = useAlert();
 
-  handleRole(res) {
+  handleClientLogIn(res) {
     console.log("This is the role value in handleRole " + res.data.user.role);
-    Provider.logIn(res.data.user.role, res.data.user.name);
-    console.log("This is the state of role: " + this.state.role);
+    this.context.logIn(res.data.user.role, res.data.user.name);
     this.props.history.push("/");
   }
 
   handleEmail(event) {
     this.setState({ email: event.target.value });
-    console.log(this.state.email);
   }
   handlePassword(event) {
     this.setState({ password: event.target.value });
-    console.log(this.state.password);
   }
 
   handleSignIn(event) {
@@ -44,10 +42,8 @@ class SignIn extends Component {
     };
     axios.post("/api/users/sign_in", user).then(res => {
       // alert.show(JSON.stringify(res.data.message));
-      console.log("This is the response" + JSON.stringify(res));
       if (JSON.stringify(res.data.message).includes("successfully") === true) {
-        //set state of role to signify there is a user and redirect to homepage
-        this.handleRole(res);
+        this.handleClientLogIn(res);
       }
     });
   }

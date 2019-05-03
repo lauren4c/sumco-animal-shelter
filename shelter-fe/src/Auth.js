@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
 export default class AuthProvider extends Component {
   constructor(props) {
@@ -9,24 +9,35 @@ export default class AuthProvider extends Component {
       role: null
     };
     console.log(
-      "This is the state in the Auth " + this.state.name + " " + this.state.role
+      "This is the state in the App " + this.state.name + " " + this.state.role
     );
   }
 
-  logIn(role, name) {
+  logIn = (role, name) => {
     this.setState({
       role: role,
       name: name
     });
-    this.props.history.push("/");
-  }
+    console.log(
+      "This is the NEW state in the App " +
+        this.state.name +
+        " " +
+        this.state.role
+    );
+  };
 
-  logOut() {
+  logOut = () => {
     this.setState({
       role: null,
       name: null
     });
-  }
+    console.log(
+      "This is the logged-out state in the App " +
+        this.state.name +
+        " " +
+        this.state.role
+    );
+  };
 
   render() {
     return (

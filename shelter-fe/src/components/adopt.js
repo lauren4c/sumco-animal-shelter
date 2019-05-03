@@ -2,8 +2,11 @@ import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import "../App.css";
 import axios from "axios";
+// import { AuthContext, Consumer } from "../Auth";
 
 class Adopt extends Component {
+  // static contextType = AuthContext;
+
   state = {
     animals: []
   };
