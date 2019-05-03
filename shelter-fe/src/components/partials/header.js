@@ -1,13 +1,31 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "../App.css";
-// import Adopt from "./components/adopt.js";
+import "../../App.css";
+import { AuthContext } from "../../Auth";
 
 class Header extends Component {
+  static contextType = AuthContext;
+
+  showSignInOut(role) {
+    console.log(role);
+    if (role === null || role === undefined) {
+      return (
+        <Link className="nav-link" to="/sign_in">
+          Sign In
+        </Link>
+      );
+    } else {
+      return (
+        <a className="nav-link" onClick={this.context.logOut}>
+          Sign Out
+        </a>
+      );
+    }
+  }
+
   render() {
     return (
       <div className="Nav">
-        {" "}
         <Link className="nav-link" to="/">
           <h3>
             Summit County Animal <br />
@@ -30,9 +48,7 @@ class Header extends Component {
             <li>
               <a href="">Volunteer/Foster</a>
             </li>
-            <li>
-              <a href="">Sign-In</a>
-            </li>
+            <li>{this.showSignInOut(this.context.role)}</li>
           </ul>
         </div>
       </div>
