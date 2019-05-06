@@ -12,7 +12,6 @@ module.exports = {
     }
 
     const errors = req.validationErrors();
-
     if (errors) {
       res.json({ errors });
     } else {

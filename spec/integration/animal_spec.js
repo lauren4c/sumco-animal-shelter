@@ -33,6 +33,22 @@ describe("routes : animals", () => {
       request.get(base, (err, res, body) => {
         expect(res.statusCode).toBe(200);
         expect(this.animal.name).toBe("Buddy");
+        // expect(this.animal.type).toBe("dog");
+        // expect(this.animal.size).toBe("large");
+        // expect(this.animal.age).toBe("adult");
+        // expect(this.animal.gender).toBe("male");
+        // expect(this.animal.status).toBe("available");
+        // expect(this.animal.breed).toBe("german shepard mix");
+        // expect(this.animal.description).toBe("I am the best dog!");
+        done();
+      });
+    });
+  });
+  describe("GET /api/animals/:id", () => {
+    it("should return a status code 200 and return 1 animal", done => {
+      request.get(`${base}${this.animal.id}`, (err, res, body) => {
+        expect(res.statusCode).toBe(200);
+        expect(this.animal.name).toBe("Buddy");
         expect(this.animal.type).toBe("dog");
         expect(this.animal.size).toBe("large");
         expect(this.animal.age).toBe("adult");

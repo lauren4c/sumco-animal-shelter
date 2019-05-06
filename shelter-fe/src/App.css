@@ -4,7 +4,7 @@
 }
 
 .Main-photo {
-  height: 600px;
+  height: 500px;
   background-image: url("/images/sammy-aspen.jpg");
   background-position: center;
   background-size: cover;
@@ -126,7 +126,9 @@ li {
   margin-bottom: 30px;
   text-align: center;
   margin-right: 10px;
+  text-decoration: none;
 }
+
 .Animal-card li {
   padding: 0px 10px;
 }

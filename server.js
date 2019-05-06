@@ -1,11 +1,12 @@
 const express = require("express");
+const app = express();
 const bodyParser = require("body-parser");
 const path = require("path");
-
-const app = express();
+var cors = require("cors");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 const appConfig = require("./src/config/main-config.js");
 const routeConfig = require("./src/config/route-config.js");
