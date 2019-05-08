@@ -36,17 +36,8 @@ class Header extends Component {
           <ul className="Nav-Links">
             <li>
               <Link className="nav-link" to="/adopt">
-                Adopt
+                View Available Animals
               </Link>
-            </li>
-            <li>
-              <a href="">FAQ</a>
-            </li>
-            <li>
-              <a href="">Contact</a>
-            </li>
-            <li>
-              <a href="">Volunteer/Foster</a>
             </li>
             <li>{this.showSignInOut(this.context.role)}</li>
           </ul>

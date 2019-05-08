@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 
 const Landing = () => (
   <section className="landing">
     <div className="Main-photo">
       <button className="Button-orange">
-        <a href="/adopt">ADOPT</a>
+        <Link to="/adopt">ADOPT</Link>
       </button>
     </div>
     <div className="Main-text">

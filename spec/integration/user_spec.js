@@ -18,7 +18,6 @@ describe("routes : users", () => {
   });
 
   describe("POST /api/users", () => {
-    // #1
     it("should create a new user with valid values", done => {
       const options = {
         url: base,
@@ -30,7 +29,6 @@ describe("routes : users", () => {
       };
 
       request.post(options, (err, res, body) => {
-        // #2
         User.findOne({ where: { email: "user@example.com" } })
           .then(user => {
             expect(user).not.toBeNull();
@@ -46,14 +44,14 @@ describe("routes : users", () => {
       });
     });
 
-    // #3
     it("should not create a new user with invalid attributes", done => {
       request.post(
         {
           url: base,
           form: {
             email: "no",
-            password: "123456789"
+            password: "123456789",
+            name: "sample users"
           }
         },
         (err, res, body) => {
@@ -63,7 +61,7 @@ describe("routes : users", () => {
               done();
             })
             .catch(err => {
-              console.log(err);
+              // console.log(err);
               done();
             });
         }
