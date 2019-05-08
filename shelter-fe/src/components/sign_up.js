@@ -62,7 +62,7 @@ class SignUp extends Component {
         <div className="Sign-Up">
           <h1>Sign up for an Sumco Animal Shelter account</h1>
           <p>
-            Already have an account? <a href="/user/sign_in">Sign in here.</a>
+            Already have an account? <a href="/sign_in">Sign in here.</a>
           </p>
           <div className="Sign-up-form">
             <form onSubmit={this.handleSubmit}>
