@@ -1,8 +1,9 @@
 const express = require("express");
-const app = express();
 const bodyParser = require("body-parser");
 const path = require("path");
 var cors = require("cors");
+
+const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 if (process.env.NODE_ENV === "production") {
   // Serve any static files
+  app.use(express.static(path.join(__dirname, "shelter-fe/build")));
 
   // Handle React routing, return all requests to React app
   app.get("*", function(req, res) {
