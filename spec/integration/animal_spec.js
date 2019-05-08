@@ -9,13 +9,13 @@ describe("routes : animals", () => {
     this.animal;
     sequelize.sync({ force: true }).then(res => {
       Animal.create({
-        name: "Buddy",
         type: "dog",
         size: "large",
         age: "adult",
+        breed: "german shepard mix",
         gender: "male",
         status: "available",
-        breed: "german shepard mix",
+        name: "Buddy",
         description: "I am the best dog!"
       })
         .then(animal => {
@@ -57,6 +57,38 @@ describe("routes : animals", () => {
         expect(this.animal.breed).toBe("german shepard mix");
         expect(this.animal.description).toBe("I am the best dog!");
         done();
+      });
+    });
+  });
+  describe("POST /api/animals/create", () => {
+    const options = {
+      url: `${base}create`,
+      form: {
+        type: "cat",
+        size: "extra-small",
+        age: "baby",
+        breed: "domestic long-hair",
+        gender: "male",
+        status: "available",
+        name: "Sunshine",
+        description: "I am the best cat!",
+        photo: "fake/file/string"
+      }
+    };
+
+    it("should create a new animal and send back message of success.", done => {
+      request.post(options, (err, res, body) => {
+        Animal.findOne({ where: { name: "Sunshine" } })
+          .then(animal => {
+            expect(res.statusCode).toBe(200);
+            expect(animal.size).toBe("extra-small");
+            expect(animal.description).toBe("I am the best cat!");
+            done();
+          })
+          .catch(err => {
+            console.log(err);
+            done();
+          });
       });
     });
   });

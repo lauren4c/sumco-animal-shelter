@@ -37,3 +37,24 @@ h2 {
   color: #0e7ea7;
   margin: 2px;
 }
+h4 {
+  font-family: "Heebo", sans-serif;
+  color: #0e7ea7;
+  margin: 2px;
+  padding-top: 10px;
+}
+
+h4:hover {
+  color: #ef980e;
+}
+a {
+  text-decoration: none;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}

@@ -5,7 +5,7 @@ import { AuthContext } from "../Auth";
 import "../App.css";
 import axios from "axios";
 
-class NewAnimal extends Component {
+class EditAnimal extends Component {
   static contextType = AuthContext;
 
   constructor(props) {
@@ -19,11 +19,11 @@ class NewAnimal extends Component {
       status: "",
       name: "",
       description: "",
-      photo: null,
-      uploadedPhoto: ""
+      uploadPhoto: "",
+      photo: ""
     };
 
-    this.handleType = this.handleType.bind(this);
+    this.handletype = this.handleType.bind(this);
     this.handleSize = this.handleSize.bind(this);
     this.handleAge = this.handleAge.bind(this);
     this.handleBreed = this.handleBreed.bind(this);
@@ -36,12 +36,30 @@ class NewAnimal extends Component {
     this.uploadPhoto = this.uploadPhoto.bind(this);
   }
 
+  componentDidMount() {
+    axios.get(`/api/animals/${this.props.match.params.id}`).then(res => {
+      this.setState({
+        type: res.data.type,
+        size: res.data.size,
+        age: res.data.age,
+        breed: res.data.breed,
+        gender: res.data.gender,
+        status: res.data.status,
+        name: res.data.name,
+        description: res.data.description,
+        currentPhoto: res.data.photo,
+        photo: res.data.photo
+      });
+    });
+  }
+
   handleType(event) {
     this.setState({ type: event.target.value });
     console.log(this.state.type);
   }
   handleSize(event) {
     this.setState({ size: event.target.value });
+    console.log(this.state.size);
   }
   handleAge(event) {
     this.setState({ age: event.target.value });
@@ -54,6 +72,7 @@ class NewAnimal extends Component {
   }
   handleStatus(event) {
     this.setState({ status: event.target.value });
+    console.log(this.state.status);
   }
   handleName(event) {
     this.setState({ name: event.target.value });
@@ -72,14 +91,16 @@ class NewAnimal extends Component {
     const data = new FormData();
     data.append("file", this.state.photo);
     axios.post("/api/animals/upload", data, {}).then(res => {
-      console.log(JSON.stringify(res.data));
-      this.setState({ uploadedPhoto: "/" + res.data.path });
+      this.setState({
+        photo: "/" + res.data.path,
+        uploadPhoto: "Photo uploaded!"
+      });
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const newAnimal = {
+    const editAnimal = {
       type: this.state.type,
       size: this.state.size,
       status: this.state.status,
@@ -88,27 +109,31 @@ class NewAnimal extends Component {
       gender: this.state.gender,
       name: this.state.name,
       description: this.state.description,
-      photo: this.state.uploadedPhoto
+      photo: this.state.photo
     };
-    console.log(newAnimal);
-    axios.post("/api/animals/create", newAnimal).then(res => {
-      if (JSON.stringify(res.data.message).includes("successfully") === true) {
-        this.props.history.push(`/adopt/${res.data.animal.id}`);
-      }
-    });
+    console.log(editAnimal);
+    axios
+      .post(`/api/animals/${this.props.match.params.id}/update`, editAnimal)
+      .then(res => {
+        if (
+          JSON.stringify(res.data.message).includes("successfully") === true
+        ) {
+          this.props.history.push(`/adopt/${res.data.animal.id}`);
+        }
+      });
   }
   render() {
     return (
       <Router>
         <div className="New-animal">
-          <h1>Add a new animal</h1>
+          <h1>Edit {this.state.name}</h1>
 
           <div className="New-animal-form">
             <form onSubmit={this.handleSubmit}>
               <div className="Dropdown-group">
                 <div className="dropdown">
                   <select
-                    value={this.state.value}
+                    value={this.state.type}
                     onChange={this.handleType}
                     required
                   >
@@ -121,7 +146,7 @@ class NewAnimal extends Component {
                 </div>
                 <div className="dropdown">
                   <select
-                    value={this.state.value}
+                    value={this.state.size}
                     onChange={this.handleSize}
                     required
                   >
@@ -135,7 +160,7 @@ class NewAnimal extends Component {
                 </div>
                 <div className="dropdown">
                   <select
-                    value={this.state.value}
+                    value={this.state.age}
                     onChange={this.handleAge}
                     required
                   >
@@ -148,7 +173,7 @@ class NewAnimal extends Component {
                 </div>
                 <div className="dropdown">
                   <select
-                    value={this.state.value}
+                    value={this.state.gender}
                     onChange={this.handleGender}
                     required
                   >
@@ -159,14 +184,14 @@ class NewAnimal extends Component {
                 </div>
                 <div className="dropdown">
                   <select
-                    value={this.state.value}
+                    value={this.state.status}
                     onChange={this.handleStatus}
                     required
                   >
                     <option value="">--Select Animal Status--</option>
-                    <option value="Extra-Small">Available</option>
-                    <option value="Small">Pending</option>
-                    <option value="Medium">Adopted</option>
+                    <option value="Available">Available</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Adopted">Adopted</option>
                   </select>
                 </div>
               </div>
@@ -175,7 +200,7 @@ class NewAnimal extends Component {
                 type="text"
                 name="name"
                 placeholder="Enter Name"
-                value={this.state.value}
+                value={this.state.name}
                 onChange={this.handleName}
                 className="form-control"
                 required
@@ -185,7 +210,7 @@ class NewAnimal extends Component {
                 type="text"
                 name="breed"
                 placeholder="Enter Breed"
-                value={this.state.value}
+                value={this.state.breed}
                 onChange={this.handleBreed}
                 className="form-control"
                 required
@@ -195,7 +220,7 @@ class NewAnimal extends Component {
                 <textarea
                   name="description"
                   placeholder="Enter Animal Description"
-                  value={this.state.value}
+                  value={this.state.description}
                   onChange={this.handleDescription}
                   className="textarea"
                   required
@@ -205,21 +230,26 @@ class NewAnimal extends Component {
                   Description must be at least 10 words.
                 </small>
               </div>
+              <p>Current photo:</p>
+              <img
+                src={this.state.currentPhoto}
+                className="Thumbnail"
+                alt={this.state.name}
+              />
               <div className="Photo-upload">
                 <input
                   type="file"
                   className="Add-photo"
                   onChange={this.handlePhoto}
-                  required
                 />{" "}
-                {this.state.uploadedPhoto}
                 <button
                   type="button"
                   className="Admin-button"
                   onClick={this.uploadPhoto}
                 >
                   Upload
-                </button>
+                </button>{" "}
+                {this.state.uploadedPhoto}
               </div>
               <br />
 
@@ -236,4 +266,4 @@ class NewAnimal extends Component {
   }
 }
 
-export default NewAnimal;
+export default EditAnimal;

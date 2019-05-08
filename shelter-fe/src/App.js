@@ -9,6 +9,8 @@ import SignUp from "./components/sign_up";
 import SignIn from "./components/sign_in";
 import Animal from "./components/animal";
 import NewAnimal from "./components/new_animal";
+import EditAnimal from "./components/edit_animal";
+
 import { AuthContext } from "./Auth";
 
 class App extends Component {
@@ -22,13 +24,14 @@ class App extends Component {
           <main>
             <Route exact path="/" component={Landing} />
             <Route exact path="/adopt" component={Adopt} />
-            <Route path="/adopt/:id" component={Animal} />
+            <Route exact path="/adopt/:id" component={Animal} />
             <Route path="/sign_in" component={SignIn} />
             <Route path="/sign_up" component={SignUp} />
             <Route path="/new_animal" component={NewAnimal} />
+            <Route exact path="/adopt/:id/edit" component={EditAnimal} />
           </main>
-          <Footer />
         </div>
+        <Footer />
       </Router>
     );
   }

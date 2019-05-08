@@ -2,12 +2,20 @@
   background-color: white;
   text-align: left;
 }
-
+.App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
 .Main-photo {
   height: 500px;
   background-image: url("/images/sammy-aspen.jpg");
   background-position: center;
   background-size: cover;
+  width: 100vw !important;
+  padding-top: 15em;
+  margin-left: -4em;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -15,9 +23,20 @@
 
 .Admin-button {
   border-color: #ef980e;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: white;
   font-family: "Heebo", sans-serif;
+  font-size: 1em;
+  padding: 10px 15px;
+  color: #707070;
+  font-weight: 700;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+.Admin-button:hover {
+  background-color: #ef980e;
+  color: white;
+  transform: scale(1.1);
 }
 
 .User-button {
@@ -27,9 +46,12 @@
   font-size: 1.25em;
   padding: 10px 15px;
   border: 0px;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-bottom: 20px;
   transition: all 0.5s ease;
+}
+.User-button:hover {
+  transform: scale(1.1);
 }
 .Button-orange {
   background-color: #ef980e;
@@ -46,9 +68,6 @@
   text-decoration: none;
   color: white;
 }
-.User-button:hover {
-  transform: scale(1.1);
-}
 .Button-orange:hover {
   transform: scale(1.1);
 }
@@ -59,13 +78,19 @@
 main {
   padding-left: 4em;
   padding-right: 4em;
+  flex: 1 0 auto;
 }
+
 .light-gray {
   color: #e5e3e3;
 }
 
 .Nav a {
   color: white;
+  text-decoration: none;
+}
+.Nav a:hover {
+  color: #ef980e;
   text-decoration: none;
 }
 
@@ -89,7 +114,7 @@ main {
 
 .Nav-Links li {
   flex-grow: 1;
-  padding-right: 1em;
+  padding-right: 1.25em;
   font-size: 1.25em;
 }
 
@@ -105,6 +130,7 @@ li {
   padding-right: 4em;
   padding-top: 2em;
   padding-bottom: 2em;
+  flex-shrink: 0;
 }
 .Footer p {
   color: white;
@@ -121,12 +147,11 @@ li {
   border: 1px solid #e5e3e3;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 250px;
-  height: 325px;
+  width: 300px;
+  height: 400px;
   margin-bottom: 30px;
   text-align: center;
   margin-right: 10px;
-  text-decoration: none;
 }
 
 .Animal-card li {
@@ -138,7 +163,7 @@ li {
 }
 .Animal-card-photo {
   width: 100%;
-  height: 200px;
+  height: 275px;
   object-fit: cover;
 }
 
@@ -148,17 +173,81 @@ label {
   font-size: 1em;
   font-weight: 700;
 }
+.Animal-profile-photo {
+  padding-right: 2em;
+}
+.Animal-photo-plus-info {
+  display: flex;
+  flex-flow: row wrap;
+}
 
+.Animal-info {
+  display: flex;
+  flex-direction: column;
+}
 .form-control {
   height: 30px;
   margin: 7px;
-  width: 40%;
+  width: 100%;
   padding-left: 5px;
+  border: 1px solid #e5e3e3;
+  font-size: 1em;
+  margin-bottom: 10px;
 }
 
+textarea {
+  height: 300px;
+  margin: 7px;
+  width: 100%;
+  padding-left: 5px;
+  border: 1px solid #e5e3e3;
+  font-size: 1em;
+  line-height: 1.5em;
+}
 .text-muted {
   font-family: "Heebo", sans-serif;
   font-size: 0.75em;
   color: #707070;
   padding-bottom: 30px;
+}
+
+.New-Animal {
+  display: flex;
+}
+
+.Dropdown-group {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+select {
+  display: block;
+  font-size: 1em;
+  font-family: "Heebo", sans-serif;
+  font-weight: 700;
+  color: #0e7ea7;
+  line-height: 1.3;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: 100%;
+  max-width: 100;
+  box-sizing: border-box;
+  border: 1px solid #e5e3e3;
+  border-radius: 0.5em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+}
+.dropdown {
+  flex-grow: 1;
+  padding: 10px;
+}
+.Photo-upload {
+  margin: 10px 0px;
+}
+.Thumbnail {
+  max-height: 100px;
 }
