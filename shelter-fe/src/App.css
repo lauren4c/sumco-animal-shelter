@@ -33,6 +33,9 @@
   color: white;
   transform: scale(1.1);
 }
+.Admin-header {
+  display: flex;
+}
 
 .User-button {
   background-color: #ef980e;

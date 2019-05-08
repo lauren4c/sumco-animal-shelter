@@ -19,6 +19,33 @@ module.exports = {
         callback(err);
       });
   },
+  getAdoptedAnimals(callback) {
+    return Animal.findAll({ where: { status: "Adopted" } })
+      .then(animals => {
+        callback(null, animals);
+      })
+      .catch(err => {
+        callback(err);
+      });
+  },
+  getPendingAdoptions(callback) {
+    return Animal.findAll({ where: { status: "Pending" } })
+      .then(animals => {
+        callback(null, animals);
+      })
+      .catch(err => {
+        callback(err);
+      });
+  },
+  getAnimalType(column, option, callback) {
+    return Animal.findAll({ where: { [column]: option, status: "Available" } })
+      .then(animals => {
+        callback(null, animals);
+      })
+      .catch(err => {
+        callback(err);
+      });
+  },
   getAnimal(id, callback) {
     return Animal.findByPk(id)
       .then(animal => {

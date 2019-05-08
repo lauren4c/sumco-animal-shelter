@@ -21,6 +21,24 @@ module.exports = {
       }
     });
   },
+  adoptedAnimals(req, res, next) {
+    animalQueries.getAdoptedAnimals((err, animals) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(animals);
+      }
+    });
+  },
+  pendingAdoptions(req, res, next) {
+    animalQueries.getPendingAdoptions((err, animals) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(animals);
+      }
+    });
+  },
   show(req, res, next) {
     animalQueries.getAnimal(req.params.id, (err, animal) => {
       if (err || animal == null) {
@@ -29,6 +47,19 @@ module.exports = {
         res.json(animal);
       }
     });
+  },
+  getType(req, res, next) {
+    animalQueries.getAnimalType(
+      req.params.column,
+      req.params.option,
+      (err, animals) => {
+        if (err || animals == null) {
+          res.json("No Animals available");
+        } else {
+          res.json(animals);
+        }
+      }
+    );
   },
   upload(req, res, err) {
     console.log(err);

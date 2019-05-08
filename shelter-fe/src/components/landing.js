@@ -5,9 +5,9 @@ import "../App.css";
 const Landing = () => (
   <section className="landing">
     <div className="Main-photo">
-      <button className="Button-orange">
-        <Link to="/adopt">ADOPT</Link>
-      </button>
+      <Link to="/adopt">
+        <button className="Button-orange">ADOPT</button>
+      </Link>
     </div>
     <div className="Main-text">
       <h1>Animal Shelter and Adoption Information</h1>
@@ -23,13 +23,13 @@ const Landing = () => (
         Shelter provides the following services:
       </p>
       <ul>
-        <li>Pet Adoptions</li>
-        <li>Pet impound redemptions</li>
-        <li>Lost and found animal tracking</li>
-        <li>License sales</li>
-        <li>Live trap rentals</li>
-        <li>Pet cremation</li>
-        <li>Humane education</li>
+        <li>• Pet Adoptions</li>
+        <li>• Pet impound redemptions</li>
+        <li>• Lost and found animal tracking</li>
+        <li>• License sales</li>
+        <li>• Live trap rentals</li>
+        <li>• Pet cremation</li>
+        <li>• Humane education</li>
       </ul>
       <hr />
       <div className="Annual-report">

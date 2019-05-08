@@ -10,15 +10,27 @@ class Header extends Component {
     console.log(role);
     if (role === null || role === undefined) {
       return (
-        <Link className="nav-link" to="/sign_in">
-          Sign In
-        </Link>
+        <li>
+          {" "}
+          <Link className="nav-link" to="/sign_in">
+            Sign In
+          </Link>
+        </li>
       );
     } else {
       return (
-        <a className="nav-link" onClick={this.context.logOut}>
-          Sign Out
-        </a>
+        <section className="Admin-header">
+          <li>
+            <Link className="nav-link" to="/pending">
+              Pending Adoptions
+            </Link>
+          </li>
+          <li>
+            <a className="nav-link" onClick={this.context.logOut}>
+              Sign Out
+            </a>
+          </li>
+        </section>
       );
     }
   }
@@ -39,7 +51,12 @@ class Header extends Component {
                 View Available Animals
               </Link>
             </li>
-            <li>{this.showSignInOut(this.context.role)}</li>
+            <li>
+              <Link className="nav-link" to="/happy_tails">
+                Happy Tails
+              </Link>
+            </li>
+            {this.showSignInOut(this.context.role)}
           </ul>
         </div>
       </div>
