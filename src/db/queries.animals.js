@@ -1,4 +1,7 @@
 const Animal = require("./models").Animal;
+const Sequelize = require("sequelize");
+
+const Op = Sequelize.Op;
 
 module.exports = {
   getAllAnimals(callback) {
@@ -12,6 +15,38 @@ module.exports = {
   },
   getAvailableAnimals(callback) {
     return Animal.findAll({ where: { status: "Available" } })
+      .then(animals => {
+        callback(null, animals);
+      })
+      .catch(err => {
+        callback(err);
+      });
+  },
+  getAdoptedAnimals(callback) {
+    return Animal.findAll({ where: { status: "Adopted" } })
+      .then(animals => {
+        callback(null, animals);
+      })
+      .catch(err => {
+        callback(err);
+      });
+  },
+  getPendingAdoptions(callback) {
+    return Animal.findAll({ where: { status: "Pending" } })
+      .then(animals => {
+        callback(null, animals);
+      })
+      .catch(err => {
+        callback(err);
+      });
+  },
+  getSortedAnimals(query, callback) {
+    let queryKeys = ["type", "size", "age"];
+    let where = { status: "Available" };
+    queryKeys.forEach(key => {
+      if (query[key]) where[key] = query[key];
+    });
+    return Animal.findAll({ where })
       .then(animals => {
         callback(null, animals);
       })

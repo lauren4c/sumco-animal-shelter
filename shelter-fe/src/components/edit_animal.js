@@ -23,7 +23,7 @@ class EditAnimal extends Component {
       photo: ""
     };
 
-    this.handletype = this.handleType.bind(this);
+    this.handleType = this.handleType.bind(this);
     this.handleSize = this.handleSize.bind(this);
     this.handleAge = this.handleAge.bind(this);
     this.handleBreed = this.handleBreed.bind(this);

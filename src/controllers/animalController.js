@@ -21,12 +21,56 @@ module.exports = {
       }
     });
   },
+
+  adoptedAnimals(req, res, next) {
+    animalQueries.getAdoptedAnimals((err, animals) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(animals);
+      }
+    });
+  },
+  pendingAdoptions(req, res, next) {
+    animalQueries.getPendingAdoptions((err, animals) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(animals);
+      }
+    });
+  },
   show(req, res, next) {
     animalQueries.getAnimal(req.params.id, (err, animal) => {
       if (err || animal == null) {
         res.json("That animal does not exist.");
       } else {
         res.json(animal);
+      }
+    });
+  },
+  getType(req, res, next) {
+    animalQueries.getAnimalType(
+      req.params.column,
+      req.params.option,
+      (err, animals) => {
+        if (err || animals == null) {
+          res.json("No Animals available");
+        } else {
+          res.json(animals);
+        }
+      }
+    );
+  },
+  sortedAnimals(req, res, next) {
+    console.log(
+      "This is the query in the controller" + JSON.stringify(req.query)
+    );
+    animalQueries.getSortedAnimals(req.query, (err, animals) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(animals);
       }
     });
   },
