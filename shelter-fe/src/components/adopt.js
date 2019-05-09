@@ -17,31 +17,31 @@ class Adopt extends Component {
     this.handleType = this.handleType.bind(this);
     this.handleSize = this.handleSize.bind(this);
     this.handleAge = this.handleAge.bind(this);
+    this.sortQuery = this.sortQuery.bind(this);
   }
 
   componentDidMount() {
     axios.get("/api/available_animals").then(res => {
-      this.setState({ animals: res.data });
-      console.log(res.data);
+      this.setState({ animals: res.data, type: "", size: "", age: "" });
     });
   }
   handleType(event) {
-    this.setState({ type: event.target.value, size: "", age: "" });
-    axios.get(`/api/animals/sort/type/${event.target.value}`).then(res => {
-      console.log(res.data);
-      this.setState({ animals: res.data });
-    });
+    this.setState({ type: event.target.value }, () => this.sortQuery());
   }
   handleSize(event) {
-    this.setState({ size: event.target.value, type: "", age: "" });
-    axios.get(`/api/animals/sort/size/${event.target.value}`).then(res => {
-      this.setState({ animals: res.data });
-    });
+    this.setState({ size: event.target.value }, () => this.sortQuery());
   }
   handleAge(event) {
-    this.setState({ age: event.target.value, size: "", type: "" });
-    axios.get(`/api/animals/sort/age/${event.target.value}`).then(res => {
-      console.log(res.data);
+    this.setState({ age: event.target.value }, () => this.sortQuery());
+  }
+
+  sortQuery() {
+    const query = {
+      type: this.state.type,
+      size: this.state.size,
+      age: this.state.age
+    };
+    axios.get("/api/animals/sort", { params: query }).then(res => {
       this.setState({ animals: res.data });
     });
   }
@@ -59,6 +59,7 @@ class Adopt extends Component {
   }
 
   results() {
+    // eslint-disable-next-line
     if (this.state.animals == "") {
       return <h2>No animals matched your search</h2>;
     } else {

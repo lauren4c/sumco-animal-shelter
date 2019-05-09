@@ -4,12 +4,11 @@
 }
 
 .Main-photo {
-  height: 500px;
+  height: 50vh;
   background-image: url("/images/sammy-aspen.jpg");
   background-position: center;
   background-size: cover;
   width: 100vw !important;
-  padding-top: 15em;
   margin-left: -4em;
   display: flex;
   justify-content: center;
@@ -97,23 +96,12 @@ main {
   color: white;
   display: flex;
   justify-content: space-between;
-  padding-left: 4em;
-  padding-right: 4em;
   position: sticky;
   top: 0;
-  height: 6em;
-  align-items: baseline;
+  align-items: center;
 }
 .Nav-Links {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.Nav-Links li {
-  flex-grow: 1;
-  padding-right: 1.25em;
-  font-size: 1.25em;
 }
 
 li {
@@ -123,16 +111,17 @@ li {
   background: #0e7ea7;
   color: white;
   display: flex;
-  justify-content: space-between;
-  padding-left: 4em;
-  padding-right: 4em;
-  padding-top: 2em;
-  padding-bottom: 2em;
   flex-shrink: 0;
+  justify-content: space-between;
 }
 .Footer p {
   color: white;
   font-size: 0.75em;
+}
+.Footer-social {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
 }
 
 .Animal-card-holder {
@@ -177,6 +166,7 @@ label {
 .Animal-photo-plus-info {
   display: flex;
   flex-flow: row wrap;
+  width: 100%;
 }
 
 .Animal-info {
@@ -248,4 +238,118 @@ select {
 }
 .Thumbnail {
   max-height: 100px;
+}
+
+@media only screen and (min-width: 1125px) {
+  .Nav-Links li {
+    flex-grow: 1;
+    padding-right: 1.25em;
+    font-size: 1.25em;
+  }
+  .Nav {
+    padding-left: 4em;
+    padding-right: 4em;
+    display: flex;
+  }
+  .Footer {
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+
+  main {
+    padding-left: 4em;
+    padding-right: 4em;
+  }
+  .Mobile-nav {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1125px) {
+  .Nav-Links li {
+    flex-grow: 1;
+    padding-right: 1em;
+    font-size: 1em;
+  }
+  main {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  .Nav {
+    padding-left: 2em;
+    padding-right: 2em;
+    display: flex;
+  }
+  .Footer {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+  .Main-photo {
+    margin-left: -2em;
+  }
+  .Mobile-nav {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .Footer {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  main {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+  .Desktop-Nav {
+    display: none;
+  }
+  .Nav {
+    padding-left: 2em;
+    padding-right: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .Mobile-nav {
+    align-self: flex-end;
+    display: initial;
+    position: absolute;
+    cursor: pointer;
+    padding-top: 1.75em;
+  }
+  .Nav-Links {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-right: 0;
+    text-align: right;
+    align-self: flex-end;
+  }
+  .Nav-logo {
+    margin-right: 0;
+    align-self: flex-start;
+  }
+  .Navbar__ToggleShow {
+    display: flex;
+  }
+
+  .Admin-header {
+    flex-direction: column;
+  }
 }

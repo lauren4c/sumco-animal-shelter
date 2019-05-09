@@ -1,6 +1,10 @@
 import React from "react";
-// import { BrowserRouter as Router } from "react-router-dom";
 import "../../App.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookSquare,
+  faInstagram
+} from "@fortawesome/free-brands-svg-icons";
 
 const Footer = () => {
   return (
@@ -23,7 +27,22 @@ const Footer = () => {
           Animal Visitation Monday - Saturday: 10:00 am - 4:00 pm
         </p>
       </div>
-      <div className="Footer-social">Facebook -- Instagram</div>
+      <div className="Footer-social">
+        <a href="https://www.facebook.com/Summit-County-Animal-Control-and-Shelter-201413533267029/">
+          <FontAwesomeIcon
+            icon={faFacebookSquare}
+            size="2x"
+            style={{ color: "white" }}
+          />
+        </a>
+        <a href="https://www.instagram.com/summitcountyanimalshelter/?hl=en">
+          <FontAwesomeIcon
+            icon={faInstagram}
+            size="2x"
+            style={{ color: "white" }}
+          />
+        </a>
+      </div>
     </div>
   );
 };

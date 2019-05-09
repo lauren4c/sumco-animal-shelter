@@ -15,7 +15,7 @@ const animalController = require("../controllers/animalController");
 
 router.get("/api/animals", animalController.index);
 router.get("/api/available_animals", animalController.availableAnimals);
-router.get("/api/animals/sort/:column/:option", animalController.getType);
+router.get("/api/animals/sort", animalController.sortedAnimals);
 router.get("/api/animals/:id", animalController.show);
 router.get("/api/adopted_animals", animalController.adoptedAnimals);
 router.get("/api/pending_adoptions", animalController.pendingAdoptions);

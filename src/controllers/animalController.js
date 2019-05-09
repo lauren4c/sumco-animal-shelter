@@ -21,6 +21,7 @@ module.exports = {
       }
     });
   },
+
   adoptedAnimals(req, res, next) {
     animalQueries.getAdoptedAnimals((err, animals) => {
       if (err) {
@@ -60,6 +61,18 @@ module.exports = {
         }
       }
     );
+  },
+  sortedAnimals(req, res, next) {
+    console.log(
+      "This is the query in the controller" + JSON.stringify(req.query)
+    );
+    animalQueries.getSortedAnimals(req.query, (err, animals) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(animals);
+      }
+    });
   },
   upload(req, res, err) {
     console.log(err);
