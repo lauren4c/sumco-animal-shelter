@@ -55,11 +55,9 @@ class EditAnimal extends Component {
 
   handleType(event) {
     this.setState({ type: event.target.value });
-    console.log(this.state.type);
   }
   handleSize(event) {
     this.setState({ size: event.target.value });
-    console.log(this.state.size);
   }
   handleAge(event) {
     this.setState({ age: event.target.value });
@@ -72,7 +70,6 @@ class EditAnimal extends Component {
   }
   handleStatus(event) {
     this.setState({ status: event.target.value });
-    console.log(this.state.status);
   }
   handleName(event) {
     this.setState({ name: event.target.value });
@@ -85,7 +82,6 @@ class EditAnimal extends Component {
       photo: event.target.files[0],
       loaded: 0
     });
-    console.log(event.target.files[0]);
   }
   uploadPhoto(event) {
     const data = new FormData();
@@ -111,7 +107,6 @@ class EditAnimal extends Component {
       description: this.state.description,
       photo: this.state.photo
     };
-    console.log(editAnimal);
     axios
       .post(`/api/animals/${this.props.match.params.id}/update`, editAnimal)
       .then(res => {

@@ -38,7 +38,6 @@ class NewAnimal extends Component {
 
   handleType(event) {
     this.setState({ type: event.target.value });
-    console.log(this.state.type);
   }
   handleSize(event) {
     this.setState({ size: event.target.value });
@@ -66,13 +65,11 @@ class NewAnimal extends Component {
       photo: event.target.files[0],
       loaded: 0
     });
-    console.log(event.target.files[0]);
   }
   uploadPhoto(event) {
     const data = new FormData();
     data.append("file", this.state.photo);
     axios.post("/api/animals/upload", data, {}).then(res => {
-      console.log(JSON.stringify(res.data));
       this.setState({ uploadedPhoto: "/" + res.data.path });
     });
   }
@@ -90,7 +87,6 @@ class NewAnimal extends Component {
       description: this.state.description,
       photo: this.state.uploadedPhoto
     };
-    console.log(newAnimal);
     axios.post("/api/animals/create", newAnimal).then(res => {
       if (JSON.stringify(res.data.message).includes("successfully") === true) {
         this.props.history.push(`/adopt/${res.data.animal.id}`);

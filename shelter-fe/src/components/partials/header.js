@@ -9,7 +9,6 @@ class Header extends Component {
   static contextType = AuthContext;
 
   showSignInOut(role) {
-    console.log(role);
     if (role === null || role === undefined) {
       return (
         <li>
