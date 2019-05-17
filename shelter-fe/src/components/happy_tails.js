@@ -14,7 +14,6 @@ class Adopt extends Component {
   componentDidMount() {
     axios.get("/api/adopted_animals").then(res => {
       this.setState({ animals: res.data });
-      console.log(res.data);
     });
   }
 

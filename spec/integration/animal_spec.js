@@ -33,13 +33,7 @@ describe("routes : animals", () => {
       request.get(base, (err, res, body) => {
         expect(res.statusCode).toBe(200);
         expect(this.animal.name).toBe("Buddy");
-        // expect(this.animal.type).toBe("dog");
-        // expect(this.animal.size).toBe("large");
-        // expect(this.animal.age).toBe("adult");
-        // expect(this.animal.gender).toBe("male");
-        // expect(this.animal.status).toBe("available");
-        // expect(this.animal.breed).toBe("german shepard mix");
-        // expect(this.animal.description).toBe("I am the best dog!");
+
         done();
       });
     });
@@ -83,6 +77,37 @@ describe("routes : animals", () => {
             expect(res.statusCode).toBe(200);
             expect(animal.size).toBe("extra-small");
             expect(animal.description).toBe("I am the best cat!");
+            done();
+          })
+          .catch(err => {
+            console.log(err);
+            done();
+          });
+      });
+    });
+  });
+  describe("POST /api/animals/:id/update", () => {
+    it("should update the animal and send back message of success.", done => {
+      const options = {
+        url: `${base}${this.animal.id}/update`,
+        form: {
+          type: this.animal.type,
+          size: "Medium",
+          age: this.animal.age,
+          breed: this.animal.breed,
+          gender: this.animal.gender,
+          status: "pending",
+          name: this.animal.name,
+          description: this.animal.description,
+          photo: this.animal.photo
+        }
+      };
+
+      request.post(options, (err, res, body) => {
+        Animal.findOne({ where: { id: this.animal.id } })
+          .then(animal => {
+            expect(animal.size).toBe("Medium");
+            expect(animal.status).toBe("pending");
             done();
           })
           .catch(err => {
