@@ -11,23 +11,23 @@ Live site: https://sumco-animal-shelter.herokuapp.com/
 ---
 
 ### v1.0 Features include:
--Available animal list and animal profiles
--User sorting by animal type, size, and age.
+-Available animal list and animal profiles  
+-User sorting by animal type, size, and age.  
 -Admin access for adding and editing animal profiles. To create an admin account in your own project db, set user `role = 1` in the user table. Contact me for admin user info on the live site.
 
 ### Upcoming Features:
-Check out the [live project board](https://trello.com/b/uo5gYHdQ/animal-shelter-app).
--General user account allowing potential-adopters to "favorite" animals and save search settings
--Accept PayPal donation
--Chat feature so that users can get quick answers form shelter staff
--Online adoption application
--Calendar for shelter events, clinics and trainings.
+Check out the [live project board](https://trello.com/b/uo5gYHdQ/animal-shelter-app).  
+-General user account allowing potential-adopters to "favorite" animals and save search settings  
+-Accept PayPal donation  
+-Chat feature so that users can get quick answers form shelter staff  
+-Online adoption application  
+-Calendar for shelter events, clinics and trainings.  
 
 ---
 
 ### Local Configuration:
-(This assumes you have [Node/NPM](http://www.nodejs.org)and [React](https://reactjs.org) already installed on your system.)
-Open up terminal, and let's get going!
+(This assumes you have [Node/NPM](http://www.nodejs.org) and [React](https://reactjs.org) already installed on your system.)
+Open up terminal, and let's get going!  
 
 1. Run `git clone https://github.com/lauren4c/sumco-animal-shelter.git` to download the project.
 
