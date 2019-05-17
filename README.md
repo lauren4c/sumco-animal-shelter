@@ -6,16 +6,16 @@ Live site: https://sumco-animal-shelter.herokuapp.com/
 
 ---
 
-###TL;DR - [Just let me have it.](Local Configuration:)
+### TL;DR - [Just let me have it.](Local Configuration:)
 
 ---
 
-###v1.0 Features include:
+### v1.0 Features include:
 -Available animal list and animal profiles
 -User sorting by animal type, size, and age.
 -Admin access for adding and editing animal profiles. To create an admin account in your own project db, set user `role = 1` in the user table. Contact me for admin user info on the live site.
 
-###Upcoming Features:
+### Upcoming Features:
 Check out the [live project board](https://trello.com/b/uo5gYHdQ/animal-shelter-app).
 -General user account allowing potential-adopters to "favorite" animals and save search settings
 -Accept PayPal donation
@@ -25,7 +25,7 @@ Check out the [live project board](https://trello.com/b/uo5gYHdQ/animal-shelter-
 
 ---
 
-###Local Configuration:
+### Local Configuration:
 (This assumes you have [Node/NPM](http://www.nodejs.org)and [React](https://reactjs.org) already installed on your system.)
 Open up terminal, and let's get going!
 
@@ -41,4 +41,4 @@ Open up terminal, and let's get going!
 
 6. Finally, in the root directory run `npm run dev` to start the client and back-end side servers. It should open up the site in your browser automatically, but you can always go to http://localhost:3000 manually.
 
-#####Happy Hacking!
+##### Happy Hacking!
