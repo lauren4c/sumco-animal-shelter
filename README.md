@@ -6,10 +6,6 @@ Live site: https://sumco-animal-shelter.herokuapp.com/
 
 ---
 
-### TL;DR - [Just let me have it.](Local Configuration:)
-
----
-
 ### v1.0 Features include:
 -Available animal list and animal profiles  
 -User sorting by animal type, size, and age.  
